@@ -265,17 +265,20 @@ class Logger {
             e.classList.add('log__entry');
             e.classList.add('log__entry__'+key);
 
-            if ('timestamp' === key) {
-                value = new Date(value).toISOString();
-            }
-
             if ('level' === key) {
                 li.classList.add('level__' + btoa(value.toLowerCase()));
                 li.classList.add('level__' + value.toLowerCase());
+
+                return;
+            }
+
+            if ('timestamp' === key) {
+                value = '[' + this.formatDate(value) + ']';
             }
 
             if ('channel' === key) {
                 li.classList.add('channel__' + btoa(value.toLowerCase()));
+                value += "." + log.level.toUpperCase();
             }
 
             if ('context' === key) {
@@ -332,5 +335,34 @@ class Logger {
                 el.classList.add('hidden');
             }
         }
+    }
+
+    /**
+     *
+     * @param timestamp
+     * @returns {string}
+     */
+    formatDate(timestamp) {
+        const date = new Date(timestamp);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDay();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        return [
+            year,
+            '-',
+            (month > 9 ? '' : '0') + month,
+            '-',
+            (day > 9 ? '' : '0') + day,
+            ' ',
+            (hours > 9 ? '' : '0') + hours,
+            ':',
+            (minutes > 9 ? '' : '0') + minutes,
+            ':',
+            (seconds > 9 ? '' : '0') + seconds
+        ].join('');
     }
 }
