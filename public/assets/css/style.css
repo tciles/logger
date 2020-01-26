@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #eee;
+    scrollbar-color: #3a4f63 #021625; /* thumb and track color */
+    scrollbar-width: thin;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #021625;
+    font-family: Consolas, sans-serif;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/**
+ * ========================================
+ * Menu
+ * ========================================
+ */
+nav {
+    position: relative;
+    z-index: 9;
+    height: 50px;
+    background: #020d14;
+    display: flex;
+    justify-content: start;
+    box-shadow: 0 -15px 15px 15px rgba(0, 0, 0, 0.1);
+}
+
+nav .group {
+    padding: 0 16px;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav .group:first-child {
+    justify-content: start;
+}
+
+nav .group:last-child {
+    justify-content: end;
+}
+
+/**
+ * ========================================
+ * Main
+ * ========================================
+ */
+.column {
+    overflow-y: auto;
+    display: flex;
+    flex: 1;
+}
+
+
+/**
+ * ========================================
+ * Sidebar
+ * ========================================
+ */
+#sidebar {
+    background: #001021;
+    width: 25%;
+    max-width: 400px;
+    min-width: 300px;
+    overflow-y: auto;
+}
+
+#sidebar h2 {
+    padding: 0 16px 16px 8px;
+}
+
+#sidebar .group {
+    padding: 16px;
+}
+
+#play_stop {
+    width: 100px;
+    border: 1px solid #1279ff;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    background: none;
+}
+
+#search {
+    width: 300px;
+    border: 1px solid #1279ff;
+    border-radius: 4px;
+    height: 32px;
+    padding: 0 16px;
+    background: none;
+}
+
+#channels, #levels {
+    list-style: none;
+    margin-bottom: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#channels li, #levels li {
+    padding: 0 16px;
+    background: #00111d;
+    line-height: 32px;
+    display: flex;
+}
+
+#channels li input, #levels li input {
+    vertical-align: middle;
+}
+
+#channels li label, #levels li label {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+/**
+ * ========================================
+ * Logs
+ * ========================================
+ */
+#container {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.log {
+    position: relative;
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 2px solid #00111d;
+    border-bottom: 2px solid #00111d;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
+    background: #021625;
+    transition: box-shadow 0.125s, border-color 0.125s linear;
+}
+
+.log:first-child {
+    margin-top: 0;
+}
+
+.log:hover {
+    z-index: 1;
+    border-top-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    background: #021625;
+    transition: box-shadow 0.125s, border-color 0.125s linear;
+}
+
+.log::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 2px;
+    left: 0;
+    top: 0;
+    background: transparent;
+    transition: width 0.125s linear;
+}
+
+.log:hover::before {
+    width: 4px;
+    transition: width 0.125s linear;
+}
+
+.log .log__entry:last-child {
+    padding: 8px;
+}
+
+
+/* COLORS */
+.log.level__emergency,
+.log.level__critical {
+    background: #ff0000 !important;
+}
+
+.log.level__emergency::before,
+.log.level__critical::before {
+    background: #fff;
+}
+
+.log.level__alert::before {
+    background: #df3527;
+}
+
+.log.level__error::before {
+    background: #ff0000;
+}
+
+.log.level__warning::before,
+.log.level__warn::before{
+    background: #ffc801;
+}
+
+.log.level__notice::before {
+    background: #aa3ba4;
+}
+
+.log.level__informational::before,
+.log.level__info::before {
+    background: #1297ff;
+}
+
+.log.level__debugging::before,
+.log.level__debug::before {
+    background: #36b649;
+}
+
+/* TEXT COLORS */
+.log__entry {
+    padding: 0px 16px;
+    justify-content: start;
+}
+
+.log__entry__context {
+    padding: 16px;
+    margin-top: 4px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.log__entry__message {
+    flex: 1;
+    white-space: normal;
+}
+
+.log__entry:last-child {
+    white-space: normal;
+}
+
+.log.level__emergency::before,
+.log.level__critical::before {
+    color: #fff;
+}
+
+.log.level__alert .log__entry,
+li.level__alert label {
+    color: #df3527;
+}
+
+.log.level__error .log__entry,
+li.level__emergency label,
+li.level__critical label,
+li.level__error label {
+    color: #ff0000;
+}
+
+li.level__critical label,
+li.level__emergency label {
+    color: #fff;
+    background: #ff0000;
+}
+
+.log.level__warning .log__entry,
+.log.level__warn .log__entry,
+li.level__warning label,
+li.level__warn label {
+    color: #ffc801;
+}
+
+.log.level__notice .log__entry,
+li.level__notice label {
+    color: #aa3ba4;
+}
+
+.log.level__info .log__entry,
+.log.level__informational .log__entry,
+li.level__info label,
+li.level__informational label {
+    color: #1297ff;
+}
+
+.log.level__debug .log__entry,
+.log.level__debugging .log__entry,
+li.level__debug label,
+li.level__debugging label {
+    color: #36b649;
+}

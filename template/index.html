@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Logger</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+    <div class="group">
+        <h1>Logger</h1>
+    </div>
+
+    <div class="group">
+<!--        <input id="search" type="text" placeholder="Rechercher...">-->
+    </div>
+
+    <div class="group">
+        <button type="button" id="play_stop">Stop</button>
+    </div>
+</nav>
+
+<div class="column">
+    <div id="sidebar">
+        <div class="group">
+            <h2>Channels</h2>
+            <ul id="channels"></ul>
+        </div>
+
+        <div class="group">
+            <h2>Levels</h2>
+            <ul id="levels"></ul>
+        </div>
+    </div>
+
+    <div id="container">
+        <ul id="messages"></ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="assets/js/socket.io.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript">
+    (function() {
+        window.logger = new Logger();
+    })(window);
+</script>
+</body>
+</html>
