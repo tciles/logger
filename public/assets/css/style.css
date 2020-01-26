@@ -55,7 +55,7 @@ nav .group:first-child {
 }
 
 nav .group:last-child {
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 nav.stats .group:first-child,
