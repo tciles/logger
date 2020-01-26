@@ -25,6 +25,21 @@ Body
 }
 ```
 
+
+```bash
+curl --location --request POST 'http://localhost:3000/log' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+		"timestamp": "{{timestamp}}",
+		"channel": "{{channel}}",
+		"level": "{{level}}",
+		"message": "{{message}}",
+		"context": {{context?}}
+}'
+```
+
+
+
 ### Php
 ```php
 <?php
