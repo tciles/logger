@@ -58,6 +58,23 @@ nav .group:last-child {
     justify-content: end;
 }
 
+nav.stats .group:first-child,
+nav.stats .group:last-child {
+    justify-content: center;
+}
+
+nav.stats .group {
+    font-size: 20px;
+}
+
+#stats__channel + span,
+#stats__level + span,
+#stats__message + span {
+    font-size: 12px;
+    color: #3a4f63;
+    margin-left: 8px;
+}
+
 /**
  * ========================================
  * Main
@@ -196,6 +213,9 @@ nav .group:last-child {
     padding: 8px;
 }
 
+.log .log__entry__level {
+    font-weight: bold;
+}
 
 /* COLORS */
 .log.level__emergency,

@@ -229,6 +229,15 @@ class Logger {
         this.addChannel(log.channel);
         this.addLevel(log.level);
 
+        let e = document.getElementById('stats__message');
+        e.innerText = this.logs.length;
+
+        e = document.getElementById('stats__channel');
+        e.innerText = this.channels.length;
+
+        e = document.getElementById('stats__level');
+        e.innerText = this.levels.length;
+
         if (this._stop) {
             return;
         }
@@ -252,7 +261,7 @@ class Logger {
                 return;
             }
 
-            const e = document.createElement('pre');
+            const e = document.createElement('span');
             e.classList.add('log__entry');
             e.classList.add('log__entry__'+key);
 

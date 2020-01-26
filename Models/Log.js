@@ -1,16 +1,17 @@
 const uuidv1 = require('uuid/v1');
+const BadParameter = require('../Error/BadParameter');
 
 class Log {
     constructor(parameters) {
         if (typeof parameters !== "object") {
-            throw new Error();
+            throw new BadParameter('Bad/Missing parameter : parameters is not an object');
         }
 
         if (!parameters.hasOwnProperty('channel')) {
-            throw new Error();
+            throw new BadParameter('Bad/Missing parameter : channel');
         }
         if (!parameters.hasOwnProperty('level')) {
-            throw new Error();
+            throw new BadParameter('Bad/Missing parameter : level');
         }
 
         this._uuid = uuidv1();
