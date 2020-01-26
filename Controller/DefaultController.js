@@ -37,7 +37,7 @@ class DefaultController {
     }
 
     index(req, res) {
-        res.sendFile(path.resolve(__dirname + '/../template/index.html'));
+        res.sendFile(path.resolve(__dirname + '/../public/index.html'));
     }
 
     ping(req, res) {
