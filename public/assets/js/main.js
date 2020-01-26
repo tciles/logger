@@ -108,24 +108,6 @@ class Logger {
 
     /**
      *
-     * @param channel
-     * @returns {T[]}
-     */
-    getLogsByChannel(channel) {
-        return this.logs.filter((log) => log.channel === channel);
-    }
-
-    /**
-     *
-     * @param level
-     * @returns {T[]}
-     */
-    getLogsByLevel(level) {
-        return this.logs.filter((log) => log.level === level);
-    }
-
-    /**
-     *
      * @param level
      */
     addLevel(level) {
