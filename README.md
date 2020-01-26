@@ -11,19 +11,43 @@ yarn start
 Open your browser on [http://localhost:3000](http://localhost:3000)
 
 ### Create log
+| Field | Type |Optional|
+|-------|----------|----|
+|timestamp|number|X|
+|channel|string||
+|level|string||
+|message|string||
+|context|mixed|X|
 
-**POST** http://localhost:3000/log
-
-Body
+#### Request
+**Method** : POST<br>
+**Endpoint** : http://localhost:3000/log<br>
+**Content-type** : application/json<br>
+**Payload** :
 ```json
 {
   "timestamp": "{{timestamp}}",
   "channel": "{{channel}}",
   "level": "{{level}}",
   "message": "{{message}}",
-  "context": {} // Optional
+  "context": {} 
 }
 ```
+
+**Curl**
+```bash
+curl --location --request POST 'http://localhost:3000/log' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+		"timestamp": "{{timestamp}}",
+		"channel": "{{channel}}",
+		"level": "{{level}}",
+		"message": "{{message}}",
+		"context": {{context}}
+}'
+```
+
+
 
 ### Php
 ```php
