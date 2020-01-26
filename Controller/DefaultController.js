@@ -53,15 +53,10 @@ class DefaultController {
     }
 
     log(req, res) {
-        const data = req.body.log;
-
-        try {
-            const log = new Log(data);
-            this.io.emit('+message', log.serialize());
-            res.send('OK');
-        } catch (e) {
-            res.send('KO');
-        }
+        const data = req.body;
+        const log = new Log(data);
+        this.io.emit('+message', log.serialize());
+        res.send('OK');
     }
 }
 
