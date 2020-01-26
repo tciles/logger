@@ -25,4 +25,32 @@ Body
 }
 ```
 
+### Php
+```php
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+use ElephantIO\Client;
+use ElephantIO\Engine\SocketIO\Version2X;
+
+$token = 'token';
+
+$client = new Client(new Version2X('http://localhost:3000', [
+    'headers' => [
+        'Authorization: Bearer ' . $token,
+        'User: username',
+    ]
+]));
+
+$client->initialize();
+
+$client->emit('+message', [
+    'channel' => 'php',
+    'level'   => 'DEBUG',
+    'message' => 'test log php',
+    'context' => []
+]);
+
+$client->close();
+```
+
 ![screenshot](https://github.com/tciles/logger/blob/develop/public/assets/img/screenshot.png "Screenshot")
