@@ -4,3 +4,4 @@
 *.log
 *.cache
 *.tmp
+.pnp.js
